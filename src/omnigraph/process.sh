@@ -235,6 +235,7 @@ if [ ${task} = "omn" ]; then
    graph_output_name=${4}
 
    # dataset_dir should have dependency parses in dep/ and their corresponding semafore parses in sem/
+   javac -cp lib/javatuples-1.2.jar:lib/stanford-corenlp-2012-07-09.jar:lib/opencsv-3.4.jar src/edu/columbia/ccls/*/*.java src/edu/columbia/ccls/text/stanford/*.java
    java -Xmx4g -cp ${omnigraph_workspace}/src:'/lib/opencsv-3.4.jar' edu.columbia.ccls.modeler.SemGraphModeler --name ${graph_output_name} --dataset_dir ${OUTDIR} --out_dir ${OMNDIR} --min_freq ${omnigraph_min_freq} --limit ${omnigraph_limit} --merge_rule ${omnigraph_merge_rule} --feature_space ${omnigraph_feature_space} --is_directed ${omnigraph_is_directed}
 
    python trace.py ${OUTDIR} ${OMNDIR} ${graph_output_name}
