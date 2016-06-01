@@ -17,6 +17,7 @@ $ omnimixture.sh <OMNIGRAPH_OUTDIR> <OMNIGRAPH_NAME> <MALLET_OUTDIR>
 Details:
 
 File structure:
+
 	BASE_FOLDER:
 		- src	:	holds sources files
 		- data	:	holds non-text input files, like .docid, .graph, .nodeid, etc
