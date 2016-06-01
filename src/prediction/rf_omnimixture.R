@@ -21,7 +21,8 @@ args = commandArgs(trailingOnly=TRUE)
 path_results_high_level= args[1]
 label_file= args[2]
 #path_results_high_level = "results/"
-label_path = sprintf("%s%s", path_results_high_level,label_file)
+#label_path = sprintf("%s%s", path_results_high_level,label_file)
+label_path = label_file
 dir_temp = dir(path=path_results_high_level,all.files=FALSE,recursive=FALSE)
 #print(dir_temp)
 
