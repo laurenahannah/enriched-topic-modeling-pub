@@ -23,5 +23,46 @@ $  sh prediction.sh <RESULTS_DIR>
 Example:
 
 	sh prediction.sh results results/label_SP500_01012006_11302013.csv
+
+
+=========================================================
+Details:
+
+(1) Get R2 values for topic representations of each document—is there correlation between LDA representation and omnigraph representation?
+
+(1a) store_R2.R
+	Traverses all ticker symbols in folder to get R2 values
+	Calls:
+		topic_generalized_R2.R
+	
+	Runs as a script with inputs hard coded; can be changed into a function
+	Inputs:
+		file_path = where all files are stored, like ”../results/Reuters/gics50/"
+	Outputs:
+		df_R2.csv : 	csv file with R2 values per ticker symbol
+
+(1b) topic_generalized_R2.R
+	Function that loads in two topic matrices and returns generalized R^2 and average adjusted R^2 to measure correlation
+	
+	Inputs:
+		- topic_mat1:	matrix with n rows (documents), n_topic columns (topics)
+		- topic_mat2:	same dimension as topic_mat2, but different fit
+	Outputs:
+		- generalized_R2:	generalized R^2 value
+		- adjusted_R2:		average adjusted R^2
+
+
+(2) rf_omnimixture.R
+	Use random forests on subsets of features; training is earlier part of data, testing is later
+	Runs as a script with inputs hard coded; can be changed into a function
+
+	Inputs:
+		- path_results_high_level: 	store path to mallet results for a given gics sector, like "results/"
+		- label_path	:	location of movement labels, e.g. ”results/label_SP500_01012006_11302013.csv"
+		- break_date	:	date to break into testing/training sets, like as.Date("2012-01-01")	
+
+	Outputs:
+		- rf_results.csv	:	number of incorrect predictions per data set/method
+
 	
 
