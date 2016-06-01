@@ -20,6 +20,7 @@ $  sh prediction.sh <RESULTS_DIR>
 	- <RESULTS_DIR>: absolute path that contains the omnimixture .csv files for each company
 
 Example:
-sh prediction.sh results label_SP500_01012006_11302013.csv
+
+	sh prediction.sh results label_SP500_01012006_11302013.csv
 	
 
