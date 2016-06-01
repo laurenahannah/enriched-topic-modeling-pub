@@ -1,7 +1,7 @@
 
-# environemnt that contains MALLET R scripts and prediction scripts
+# environment that contains MALLET R scripts and prediction scripts
 # ~/enriched-topic-modeling/src
-ENVIRONMENT=`~/enriched-topic-modeling/src`
+ENVIRONMENT=`~/enriched-topic-modeling-pub/src/prediction`
 
 # base stopword list for MALLET
 BASE_STOPWORDS=stopwordlist.txt
