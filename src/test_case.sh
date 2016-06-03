@@ -8,7 +8,6 @@ LABEL_FILE=../data/label_SP500_01012006_11302013.csv
 
 cd ${TEXT_INDIR}
 for COMP in *; do
-    COMP=$1
 
     cd ${ENVIRONMENT}/omnigraph
     sh process.sh seg ${TEXT_INDIR}/$COMP ${OMNIGRAPH_OUTDIR}/$COMP
