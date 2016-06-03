@@ -23,7 +23,7 @@ $ cd /export/projects/enriched-topic-modeling/data/edgar/pipeline_get_input_for_
 Then, type the following command line:
 
 ```sh
-$ ./script/run.sh ./data/10K_2016-03-13.graph 2 ./output/bf_input
+$ ./linearization/linearize.sh ./data/10K_2016-03-13.graph 2 ./output/bf_input
 ```
 Note that the above command line takes 3 input arguments for the bash script run.sh:
 
