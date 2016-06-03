@@ -6,11 +6,12 @@ Omnimixture uses BayesFactor on the Omnigraph representation of documents (file 
  		GRAPH_DIR/omnigraph : directory that contains .graph, .graph.nodeid, .linear, etc.
     - OMNIGRAPH_NAME: Name of the graph files e.g. GR if /OMNIGRAPH_OUTDIR/omnigraph/GR.graph
     - MALLET_OUTDIR: Absolute path to the directory where the Omnimixture files will be produced
+    - BASE_STOPWORD_FILE: stop word list file for topic modeling
     -outputs: omnimixture document representations
 
 Run omnimixture script with the following options.
 ```sh
-$ omnimixture.sh <OMNIGRAPH_OUTDIR> <OMNIGRAPH_NAME> <MALLET_OUTDIR>
+$ omnimixture.sh <OMNIGRAPH_OUTDIR> <OMNIGRAPH_NAME> <MALLET_OUTDIR> <BASE_STOPWORD_FILE>
 ```
 =======================================================================
 
