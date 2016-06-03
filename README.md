@@ -24,4 +24,5 @@ Contains raw text data from Reuters news arcticles for a set of S&P 500 companie
 ---------------------------------------
 
 Initial Commit: 04-21-16
+
 Update: 06-03-16
