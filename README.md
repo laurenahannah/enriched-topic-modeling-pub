@@ -1,6 +1,8 @@
-enriched-topic-modeling-pub:
+enriched-topic-modeling-pub
+===========================
 
 Public code for enriched topic modeling
+---------------------------------------
 
 Authors:
 	- Lauren A. Hannah
