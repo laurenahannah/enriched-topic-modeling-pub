@@ -14,6 +14,7 @@ from pandas import DataFrame
 from numpy import abs, exp, log, log2, percentile, power, zeros
 import operator
 from collections import defaultdict
+import sys
 
 def make_stopword_list(text_folder,stopword_list,output_name):
     # Inputs:
@@ -78,5 +79,9 @@ def make_stopword_list(text_folder,stopword_list,output_name):
     
     out_file.close()
             
-    
-    
+if __name__ == "__main__":
+    print(sys.argv[1])
+    text_folder = sys.argv[1]
+    stopword_list = sys.argv[2]
+    output_name = sys.argv[3] 
+    make_stopword_list(text_folder,stopword_list,output_name)

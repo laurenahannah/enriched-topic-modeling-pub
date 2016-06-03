@@ -36,7 +36,7 @@ import copy
 import csv
 from spyderlib.utils.iofuncs import load_dictionary, save_dictionary
 
-from IPython import embed
+#from IPython import embed
 
 
 ##############################################################################

@@ -23,10 +23,19 @@ require (mallet)
 #	- extension is .txt
 
 
+# adding memory requirements for java purposes
+#library(rJava)
+#options( java.parameters = "-Xmx8g" )
+#options( java.parameters = "-Xms8g" )
+
+# gets inputs from arguments 
+args = commandArgs(trailingOnly=TRUE)
+path_base = args[1]
+path_results = args[2]
 
 # Save three paths in a list
-path_base = "../MALLET/March_13_test_IT/"
-path_results = "../results/March_13_test_IT/"
+#path_base = "../MALLET/Reuters/gics50/CCI/"
+#path_results = "../results/Reuters/gics50/CCI/"
 doc_path_list = list(3)
 doc_path_list[[1]] = "plain_docs" # Plain documents without features
 doc_path_list[[2]] = "features" # Only features
