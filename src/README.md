@@ -8,7 +8,7 @@ Omnimixture uses a number of open source projects to work:
 
 * [NLTK] - Natural Language Processing with Python
 * [MST Parser] - Dependency parsing toolkit
-* [SEMAFOR] - Markdown parser done right. Fast and easy to extend.
+* [SEMAFOR] - Frame semantic parser
 
    [NLTK]: <http://www.nltk.org/>
    [MST Parser]: <http://www.seas.upenn.edu/~strctlrn/MSTParser/MSTParser.html>
@@ -29,10 +29,7 @@ sh process.sh tok ${TEXT_INDIR} ${OMNIGRAPH_OUTDIR}
 sh process.sh dep ${TEXT_INDIR} ${OMNIGRAPH_OUTDIR}
 sh process.sh sem ${TEXT_INDIR} ${OMNIGRAPH_OUTDIR}
 sh process.sh omn ${TEXT_INDIR} ${OMNIGRAPH_OUTDIR} ${GRAPH_NAME}
-done
 
-cd ${ENVIRONMENT}/prediction
-sh prediction.sh ${MALLET_OUTDIR} ${LABEL_OUTDIR}
 ```
 
 In order to generate omnimixture 
