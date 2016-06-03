@@ -1,7 +1,4 @@
 
-# environment that contains MALLET R scripts and prediction scripts
-# ~/enriched-topic-modeling/src
-ENVIRONMENT=`~/enriched-topic-modeling-pub/src/prediction`
 
 # All output files from MALLET stored in subdirectories in RESULTS_DIR
 # Example: ‘results/CCI/docs_features_doc_topics.csv’

@@ -2,17 +2,15 @@
 # Lauren A. Hannah
 # 04/26/16
 #
-# Modified by Lauren A. Hannah
-# 06/01/16
-# Modifications: cleaned for use in public folder
-#
 # Purpose: make measures of similarity for representations
 ##############################
 
 # Folder to search
+
+# gets inputs from arguments 
 args = commandArgs(trailingOnly=TRUE)
 file_path = args[1]
-#file_path ="results/"
+#file_path ="../results/Reuters/gics50/"
 source("topic_generalized_R2.R")
 
 # Initialize
@@ -29,7 +27,6 @@ num_files = vector(mode = 'numeric', length = 0)
 dir_temp = dir(path=file_path,all.files=FALSE,recursive=FALSE)
 # Outputs should be something like 
 # [1] "CCI" "CTL" "FTR" "WIN"
-dir_temp = dir_temp[!grepl('\\.',dir_temp)]
 counter = 1 # for adding stuff to vectors
 for (ticker in dir_temp){
 	# Read in files
@@ -84,21 +81,13 @@ for (ticker in dir_temp){
 	idx_omni4mixed = is.element(omni_files, inter_mixed_omni)
 	idx_mixed4omni = is.element(mixed_files, inter_mixed_omni)
 	
-	# Find dups
-	plain_dup = duplicated(plain_files)
-	omni_dup = duplicated(omni_files)
-	mixed_dup = duplicated(mixed_files)
-	# Get rid of any dups
-	idx_plain4omni = as.logical(idx_plain4omni*!plain_dup)
-	idx_plain4mixed = as.logical(idx_plain4mixed*!plain_dup)
-	idx_omni4plain = as.logical(idx_omni4plain*!omni_dup)
-	idx_omni4mixed = as.logical(idx_omni4mixed*!omni_dup)
-	idx_mixed4plain = as.logical(idx_mixed4plain*!mixed_dup)
-	idx_mixed4omni = as.logical(idx_mixed4omni*!mixed_dup)
 	
 	# Get R2 values
 	plain_mixed = topic_generalized_R2(plain_mat[idx_plain4mixed,], mixed_mat[idx_mixed4plain,])
-	
+	print(sum(idx_plain4omni))
+	print(sum(idx_omni4plain))
+	print(dim(plain_mat[idx_plain4omni,]))
+	print(dim(omni_mat[idx_omni4plain,]))
 	plain_omni = topic_generalized_R2(plain_mat[idx_plain4omni,], omni_mat[idx_omni4plain,])
 	omni_mixed = topic_generalized_R2(omni_mat[idx_omni4mixed,], mixed_mat[idx_mixed4omni,])
 	
@@ -117,7 +106,6 @@ for (ticker in dir_temp){
 # Make into data frame and store
 df_R2 = data.frame(file = file_vec, num_files = num_files, plain_omni_adj = plain_omni_adj, plain_omni_gen = plain_omni_gen, plain_mixed_adj = plain_mixed_adj, plain_mixed_gen = plain_mixed_gen, omni_mixed_adj = omni_mixed_adj, omni_mixed_gen = omni_mixed_gen)
 
-# Save R2 values in csv
 filename = sprintf("%s/df_R2.csv", file_path)
 write.csv(df_R2, filename, row.names = F)
 

@@ -2,10 +2,6 @@
 # Lauren A. Hannah
 # 05/11/16
 #
-# Modified by Lauren A. Hannah
-# 06/1/16
-# Modification: cleaned for use in public folder
-#
 # Purpose: use random forests on different inputs
 ##############################
 require(rpart)
@@ -17,14 +13,15 @@ require(caretEnsemble)
 # Label data and make covariates
 #
 # Loop through directories
+# gets inputs from arguments 
 args = commandArgs(trailingOnly=TRUE)
-path_results_high_level= args[1]
-label_file= args[2]
-#path_results_high_level = "results/"
-#label_path = sprintf("%s%s", path_results_high_level,label_file)
-label_path = label_file
+path_high_level= args[1]
+path_results_high_level= args[2]
+
+#path_high_level = "../MALLET/Reuters/gics30/"
+#path_results_high_level = "../results/Reuters/gics30/"
 dir_temp = dir(path=path_results_high_level,all.files=FALSE,recursive=FALSE)
-#print(dir_temp)
+print(dir_temp)
 
 # Preprocess for caret---want to make custom random forest models
 ##########
@@ -184,12 +181,14 @@ omni_all_cor = vector(mode = 'numeric', length = 0)
 counter = 1
 for (ticks in dir_temp){
 	print(ticks)
+	path_base = sprintf("%s%s",path_high_level,ticks)
 	path_results = sprintf("%s%s",path_results_high_level,ticks)
 	# Ticker symbol
 	ticker = sprintf("%s_SP500",ticks)
 	# Break date for training/testing
 	break_date = as.Date("2012-01-01")
 	# Read all data
+	label_path = "./label_SP500_01012006_11302013.csv"
 	label_all = read.csv(label_path)
 	# Match files with dates, ticker
 	
@@ -207,12 +206,6 @@ for (ticks in dir_temp){
 	# Loop through files in plain_docs
 	company_id = grep(ticker,label_all$Company)
 	label_small = label_all[company_id,]
-	if (length(company_id) == 0){
-		print("No documents found for:")
-		print(ticker)
-		print("Either: not in S&P500 entire time or symbol does not work with grep(). Run latter manually.")
-		next
-	}
 	for (idx in 1:n_docs){
 		file_vec[idx] = docs[idx]
 		# Get the date
@@ -224,11 +217,14 @@ for (ticks in dir_temp){
 		# Find file with that date and ticker
 		date_id = which(label_small$Date == date)
 		
-		# Someone did not include movements
+		# OKAY---it looks like someone ignored specs and did not include movements
 		# for non-trading days... even though there might be news on them
+		# Not to say that I'm angry, but... I'm angry
+		# Seriously, I have better things to do than cover for RAs not making
+		# code to spec
 		#
 		# To fix: pull out the next closest day
-		if (length(date_id) == 0){ #No movement recorded
+		if (length(date_id) == 0){ #Grrrrr..... I hate bugs!
 			date_as_date = as.Date(date)
 			while(length(date_id) == 0){
 				date_as_date = date_as_date + 1

@@ -53,8 +53,8 @@ topic_generalized_R2 <- function(topic_mat1, topic_mat2){
 	
 	# Get generalized R^2
 	
-	#print(linear_log_like)
-	#print(intercept_log_like)
+	print(linear_log_like)
+	print(intercept_log_like)
 	
 	generalized_R2 = 1 - (exp(intercept_log_like - linear_log_like))^(2/n)
 	

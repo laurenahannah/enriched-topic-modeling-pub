@@ -5,6 +5,7 @@
 INDIR=/export/home/hs2703/pub/data/plain
 OUTDIR=/export/home/hs2703/pub/data/graph
 
+cd 
 
 sh process.sh seg $INDIR $OUTDIR
 sh process.sh tok $INDIR $OUTDIR
