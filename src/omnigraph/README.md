@@ -14,6 +14,7 @@
 	- <OUTDIR>/omnigraph/<name-of-graph>.graph.nodeid: Mapping from node ID's to semantic roles
 	- <OUTDIR>/omnigraph/<name-of-graph>.docid: Mapping from graphs to their corresponding documents/lines
 	- <OUTDIR>/omnigraph/<name-of-graph>.doc: Mapping from graphs to their corresponding frame semantic and depency parses
+	- <OUTDIR>/omnigraph/<name-of-graph>.linear: Linearization of omnigraph features for further processing
 
 
 STEPS to run process in order to get omnigraph files from plain .txt files:
@@ -59,13 +60,13 @@ $ sh process.sh omn <INDIR> <OUTDIR> <name-of-graph>
 ```
 This final command creates the Omnigraph files, both raw .graph files and .linear linearization files. Linearization creates features by traversing all local graphs up to k steps. The value can be controlled within linearize.sh:
 ```sh
-$ ./linearization/linearize.sh ${OMNDIR}/${graph_output_name}.graph ${omnigraph_linear_parameter} ${OMNDIR}/${graph_output_name}.linear
+$ ./linearization/linearize.sh <OUTDIR>/omnigraph/<name-of-graph>.graph <omnigraph_linear_parameter> <OUTDIR>/omnigraph/<name-of-graph>.linear
 ```
 The above command line takes 3 input arguments:
 
-- ${OMNDIR}/${graph_output_name}.graph: this is the filename of full omnigraph
-- ${omnigraph_linear_parameter}: this integer specifies maximum number of nodes in feature. For any nonnegative integer n, maximum number of nodes in feature = n + 1. So in this argument, we specify that n = 2 i.e. maximum number of nodes in feature is 3.
-- ${OMNDIR}/${graph_output_name}.linear: this is the filename of the final output document that contains doc_ID, sentence_ID, feature name, and feature count.
+- <OUTDIR>/omnigraph/<name-of-graph>.graph: this is the filename of full omnigraph
+- <omnigraph_linear_parameter>: this integer specifies maximum number of nodes in feature. For any nonnegative integer n, maximum number of nodes in feature = n + 1. So in this argument, we specify that n = 2 i.e. maximum number of nodes in feature is 3.
+- <OUTDIR>/omnigraph/<name-of-graph>.linear: this is the filename of the final output document that contains doc_ID, sentence_ID, feature name, and feature count.
 
 The bash script run.sh will generate intermediary files and store them temporarily in a “temp” folder in the system. Once the bash script finishes up running, it will remove all temporary intermediary files, and only gives the final output.
 
