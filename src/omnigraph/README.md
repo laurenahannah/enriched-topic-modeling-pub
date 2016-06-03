@@ -61,7 +61,7 @@ This final command creates the Omnigraph files, both raw .graph files and .linea
 ```sh
 $ ./linearization/linearize.sh ${OMNDIR}/${graph_output_name}.graph ${omnigraph_linear_parameter} ${OMNDIR}/${graph_output_name}.linear
 ```
-Note that the above command line takes 3 input arguments for the bash script run.sh:
+The above command line takes 3 input arguments:
 
 - ${OMNDIR}/${graph_output_name}.graph: this is the filename of full omnigraph
 - ${omnigraph_linear_parameter}: this integer specifies maximum number of nodes in feature. For any nonnegative integer n, maximum number of nodes in feature = n + 1. So in this argument, we specify that n = 2 i.e. maximum number of nodes in feature is 3.
