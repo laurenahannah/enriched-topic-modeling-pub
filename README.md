@@ -1,14 +1,13 @@
 enriched-topic-modeling-pub
 ===========================
 
-##Public code for enriched topic modeling
-
-
 Authors:
 - Lauren A. Hannah
 - Rebecca Passonneau
 - Hooshmand Shokri Razaghi
 - Ruilin Zhong
+
+Supplied code allows users to create (1) Omnigraphs for a given text input, (2) use Omnigraph representation to create OmniMixtures, and (3) use OmniMixture representations for prediction.
 
 ---------------------------------------
 
