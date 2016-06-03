@@ -23,4 +23,4 @@ for COMP in *; do
 done
 
 cd ${ENVIRONMENT}/prediction
-sh prediction.sh ${MALLET_OUTDIR} ${LABEL_OUTDIR}
+sh prediction.sh ${MALLET_OUTDIR} ${LABEL_FILE}
