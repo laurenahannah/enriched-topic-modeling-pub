@@ -5,10 +5,10 @@ enriched-topic-modeling-pub
 
 
 Authors:
-..*Lauren A. Hannah
-..*Rebecca Passonneau
-..*Hooshmand Shokri Razaghi
-..*Ruilin Zhong
+⋅⋅⋅Lauren A. Hannah
+⋅⋅⋅Rebecca Passonneau
+⋅⋅⋅Hooshmand Shokri Razaghi
+⋅⋅⋅Ruilin Zhong
 
 ---------------------------------------
 
