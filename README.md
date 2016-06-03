@@ -5,6 +5,7 @@ enriched-topic-modeling-pub
 
 
 Authors:
+
 -Lauren A. Hannah
 -Rebecca Passonneau
 -Hooshmand Shokri Razaghi
