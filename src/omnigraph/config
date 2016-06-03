@@ -6,10 +6,6 @@
 SEMAFOR_HOME=/export/projects/nlp/nlp4fe/Programs/workspace/semafor 
 #/usr2/dipanjan/experiments/FramenetParsing/www/semafor-semantic-parser
 
-# Temporary folder location: Change the path to your custom temp directory
-##TEMP_DIR=${SEMAFOR_HOME}/release/temp
-TEMP_DIR=/export/projects/enriched-topic-modeling/src/preptest/temp
-
 # This indicates whether MST parser should run in the server mode or not
 # Modes are "server" and "noserver"
 MST_MODE=noserver
@@ -66,14 +62,16 @@ DECODING_TYPE=ad3
 
 ## Hooshmand added
 NLTK=/export/projects/unbalanced-classification/src/nltk
-libsvm_dir='/export/projects/nlp4fe/Programs/libsvm-3.17' 
+#libsvm_dir='/export/projects/nlp4fe/Programs/libsvm-3.17' 
 
-omnigraph_workspace='/export/projects/enriched-topic-modeling/src/omnigraph'
+#omnigraph_workspace='/export/projects/enriched-topic-modeling/src/omnigraph'
+omnigraph_workspace='/export/home/hs2703/pub/omnigraph'
 omnigraph_merge_rule='FSENT'
 omnigraph_feature_space='FRAME_BOW_DEP'
 omnigraph_is_directed='y'
 omnigraph_min_freq=0
 omnigraph_limit=1000000
+omnigraph_linear_parameter=2
 
 ######################## END ENVIRONMENT VARIABLES #########################
 

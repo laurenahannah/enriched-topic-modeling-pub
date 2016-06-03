@@ -2,10 +2,11 @@
 import os, sys
 import difflib
 
-#out_path = '/export/projects/enriched-topic-modeling/src/preptest/data/test'
-#omni_path = '/export/projects/enriched-topic-modeling/src/preptest/data/test/omnigraph' 
-#omni_name = '10K'
+out_path = '/export/projects/enriched-topic-modeling/src/process/data/test'
+omni_path = '/export/projects/enriched-topic-modeling/src/process/data/test/omnigraph' 
+omni_name = '10K'
 
+'''
 if len(sys.argv) != 4:
 	print "wrong usage!"
 	print sys.argv[0] + " <sentence-per-line-.seg-path> <omnigraph-path> <omnigraph-file-name>"
@@ -14,6 +15,7 @@ if len(sys.argv) != 4:
 out_path = sys.argv[1]
 omni_path = sys.argv[2]
 omni_name = sys.argv[3]
+'''
 
 graph_doc = omni_path + '/'+omni_name+'.doc'
 graph_file = omni_path + '/'+omni_name+'.graph'
@@ -54,7 +56,7 @@ f.close()
 
 docid_file = open(omni_path+'/'+omni_name+'.docid', 'w')
 #new_graph_file = open(omni_path+'/'+omni_name+'.graph', 'w')
-new_graph_file = open(omni_path+'/'+omni_name+'.graph', 'w')
+new_graph_file = open(omni_path+'/'+omni_name+'.newgraph', 'w')
 
 for doc in doc_id:
 	docid_file.write(doc+'\n')
@@ -67,10 +69,7 @@ for i in range(0, len(sentences)):
 		dif_ratio = difflib.SequenceMatcher(None, origsentences[i+o], sentences[i]).ratio()
 		dif_scores.append(dif_ratio)
 		#sys.stdout.write(str(dif_ratio) + " ")
-
-	index = i#+ dif_scores.index(max(dif_scores))
-	if offset > 0:
-		index += dif_scores.index(max(dif_scores))
+	index = i + dif_scores.index(max(dif_scores))
 	docid = doc_id.index(origfilename[index])
 	fname = out_path + "/" + origfilename[index]
 	linen = origlinenumber[index]

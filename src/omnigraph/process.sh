@@ -1,13 +1,16 @@
 
 # input/output dir should be passed on as an argument
-source /export/projects/enriched-topic-modeling/src/process/config
+#source /export/projects/enriched-topic-modeling/src/process/config
+source ./config
 
 if [ $# -lt 3 -o $# -gt 4 ]; then
    echo "USAGE: `basename "${0}"` <task> <input-dir> <output-dir> [<output-graph-name>]"
-   echo "task=	tok : tokenize and part of speech tag"
+   echo "task=	seg : segmenting the original docs into sentences"
+   echo "	tok : tokenize and part of speech tag"
    echo "	dep : dependency parse"
    echo	"	sem : semafor parse"
    echo	"	omn : generate omnigraph"
+   echo	"	all : sequentially carriy out all the steps to the end"
    exit 1
 fi
 
@@ -34,9 +37,8 @@ TEMP_DIR=${OUTDIR}/tmp
 if [ ${task} = "seg" ]; then
    echo "Performing tokenizing and part of speach tagging on "${dataset_dir}
    python preprocess.py $INDIR $OUTDIR $NLTK
-
    echo "Creating single input file..."
-   cat ${OUTDIR}/*.seg >> ${TEMP_DIR}/all.seg
+   cat ${OUTDIR}/*.seg > ${TEMP_DIR}/all.seg
    python discard.py ${TEMP_DIR}/all.seg 1700
    echo "Done creating a single input file!"
 
@@ -138,6 +140,8 @@ fi
 if [ ${task} = "sem" ]; then
    echo "Performing semafore parsing "
 
+   rm -f ${INPUT_FILE}.fes
+
    if [ "${AUTO_TARGET_ID_MODE}" == "relaxed" ]
    then 
     RELAXED_FLAG=yes
@@ -205,7 +209,6 @@ if [ ${task} = "sem" ]; then
    echo
 fi
 
-
 if [ ${task} = "omn" ]; then
 
    DEPDIR=${OUTDIR}/dep
@@ -235,10 +238,13 @@ if [ ${task} = "omn" ]; then
    graph_output_name=${4}
 
    # dataset_dir should have dependency parses in dep/ and their corresponding semafore parses in sem/
-   javac -cp lib/javatuples-1.2.jar:lib/stanford-corenlp-2012-07-09.jar:lib/opencsv-3.4.jar src/edu/columbia/ccls/*/*.java src/edu/columbia/ccls/text/stanford/*.java
    java -Xmx4g -cp ${omnigraph_workspace}/src:'/lib/opencsv-3.4.jar' edu.columbia.ccls.modeler.SemGraphModeler --name ${graph_output_name} --dataset_dir ${OUTDIR} --out_dir ${OMNDIR} --min_freq ${omnigraph_min_freq} --limit ${omnigraph_limit} --merge_rule ${omnigraph_merge_rule} --feature_space ${omnigraph_feature_space} --is_directed ${omnigraph_is_directed}
 
    python trace.py ${OUTDIR} ${OMNDIR} ${graph_output_name}
+
+   echo "N-Linearizing Omnigraph N="${omnigraph_linear_parameter} 
+   sh ./linearization/linearize.sh ${OMNDIR}/${graph_output_name}.graph ${omnigraph_linear_parameter} ${OMNDIR}/${graph_output_name}.linear
+   echo "Linearization done."
 fi
 
 REMOVE_DOT_TMP=0

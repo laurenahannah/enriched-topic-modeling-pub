@@ -1,5 +1,6 @@
 import os,glob,sys,ConfigParser,nltk.data
-
+import traceback
+import codecs
 
 INDIR = sys.argv[1] 
 OUTDIR = sys.argv[2] 
@@ -13,11 +14,19 @@ os.chdir(INDIR)
 for file in glob.glob("*.txt"):
     # print file 
     base=os.path.splitext(file)[0]
-    writefile = open(OUTDIR + "/" + base + '.seg', 'w')
-    with open(file, 'r') as doc:
-        content = doc.read()
-    writefile.write('\n'.join(sent_detector.tokenize(content.strip())))
-    writefile.close()
+
+    try:
+        #with codecs.open(file, encoding='utf-8', mode='r') as doc:
+        with open(file, 'r') as doc:
+            content = doc.read().decode('utf-8', 'ignore')
+            lines = '\n'.join(sent_detector.tokenize(content.strip()))
+            writefile = open(OUTDIR + "/" + base + '.seg', 'w')
+            writefile.write(lines.encode('utf-8', 'ignore'))
+            writefile.close()
+        print "Successfully segmented file %s", file
+    except: 
+        print "Failed for file %s", file
+        traceback.print_exc() 
 print("DONE")
 
 
