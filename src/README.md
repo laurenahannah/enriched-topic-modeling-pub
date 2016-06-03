@@ -19,8 +19,8 @@ Omnimixture uses a number of open source projects to work:
 In order to generate Omnigraphs from a directory <TEXT_INDIR> containing plan .txt documents and creating the results in <OMNIGRAPH_OUTDIR>
 
 ```sh
-TEXT_INDIR=../data/Rueters/gics15/APA
-OMNIGRAPH_OUTDIR=../data/gics15_graph/APA
+TEXT_INDIR=../data/Rueters/gics15/AA
+OMNIGRAPH_OUTDIR=../data/gics15_graph/AA
 GRAPH_NAME=APA
 
 cd ./omnigraph
@@ -40,8 +40,8 @@ In order to generate omnimixture
 
 ```sh
 cd ./omnimixture
-${MALLET_OUTDIR}
-${BASE_STOPWORD_FILE}
+MALLET_OUTDIR=../data/gics15_mallet/AA
+BASE_STOPWORD_FILE=../omnimixture/stopwordlist.txt
 sh omnimixture.sh ${OMNIGRAPH_OUTDIR} ${GRAPH_NAME} ${MALLET_OUTDIR} ${BASE_STOPWORD_FILE}
 ```
 
