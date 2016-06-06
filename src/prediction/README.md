@@ -14,7 +14,7 @@ STEPS to run prediction in order to get df_R2.csv and rf_results.csv:
 1) Run prediction.sh with the following options
 
 ```sh
-$  sh prediction.sh <RESULTS_DIR>
+$  sh prediction.sh <RESULTS_DIR> <LABEL_FILE>
 ```
 
 
