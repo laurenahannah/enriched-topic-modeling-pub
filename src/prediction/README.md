@@ -19,6 +19,7 @@ $  sh prediction.sh <RESULTS_DIR> <LABEL_FILE>
 
 
 	- <RESULTS_DIR>: absolute path that contains the omnimixture .csv files for each company
+	- <LABEL_FILE>: absolute path that contains .csv of movement/no movement
 
 Example:
 
